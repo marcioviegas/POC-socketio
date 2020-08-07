@@ -1,0 +1,7 @@
+{
+  "name": "POC-socketio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Márcio Viegas <marcioaugustoviegas@gmail.com>",
+  "license": "MIT"
+}
