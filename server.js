@@ -1,14 +1,23 @@
 import express from 'express'
+import io from 'socket.io'
+import http from 'http'
 
-const SERVER_PORT = process.env.SERVER_PORT || 9999;
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 var app = express();
+var server = http.Server(app);
+var ioServer = io(server);
 
+app.use(express.static('public'));
 
-app.get("/", (req, res, next) => {
-    res.send("Hello World")
+ioServer.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 })
 
 
-
-app.listen(SERVER_PORT, () => console.log(`server running on ${SERVER_PORT}`))
+server.listen(SERVER_PORT, function(){
+    console.log('listening on port 3000');
+});
